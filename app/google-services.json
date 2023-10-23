@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "428841326020",
+    "firebase_url": "https://androidstudio-login-4c204-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "androidstudio-login-4c204",
+    "storage_bucket": "androidstudio-login-4c204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428841326020:android:2ad9a16f00c884b9c44091",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKXadiRMZpjgTtnYStHEchOOJvTEK75gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428841326020:android:89ac139964c4e9b4c44091",
+        "android_client_info": {
+          "package_name": "com.prm392.assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKXadiRMZpjgTtnYStHEchOOJvTEK75gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Registration">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/logo"
-            android:contentDescription="@string/login_button_text"
+            android:contentDescription="@string/register_button_text"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -39,6 +39,22 @@
                 android:inputType="text"
                 android:layout_marginTop="20dp"/>
             <EditText
+                android:id="@+id/full_name_input"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:hint="@string/full_name_input_hint"
+                android:autofillHints="name"
+                android:inputType="text"
+                android:layout_marginTop="20dp"/>
+            <EditText
+                android:id="@+id/phone_number_input"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:hint="@string/phone_number_input_hint"
+                android:autofillHints="phone"
+                android:inputType="text"
+                android:layout_marginTop="20dp"/>
+            <EditText
                 android:id="@+id/password_input"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
@@ -46,30 +62,32 @@
                 android:autofillHints="password"
                 android:inputType="textPassword"
                 android:layout_marginTop="20dp"/>
+            <EditText
+                android:id="@+id/confirm_password_input"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:hint="@string/confirm_password_input_hint"
+                android:autofillHints="password"
+                android:inputType="textPassword"
+                android:layout_marginTop="20dp"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login_button_text"
+                android:text="@string/register_button_text"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/orange"
-                android:onClick="userLogin"
+                android:onClick="userRegister"
                 android:layout_marginTop="20dp"/>
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/register_text"
-            android:textStyle="bold"
-            android:onClick="goToRegistration"
-            android:layout_marginTop="200dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:onClick="goToForgetPassword"
-            android:text="@string/forgot_password"
+            android:layout_marginTop="100dp"
+            android:text="@string/login_text"
+            android:onClick="goToLogin"
             android:textStyle="bold" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

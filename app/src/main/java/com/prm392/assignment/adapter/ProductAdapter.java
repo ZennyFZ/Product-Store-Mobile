@@ -9,17 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.prm392.assignment.R;
 import com.prm392.assignment.model.ProductModel;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
     Context context;
-    ArrayList<ProductModel> productList;
-    public ProductAdapter(Context context, ArrayList<ProductModel> productList) {
+    List<ProductModel> productList;
+    public ProductAdapter(Context context, List<ProductModel> productList) {
         this.context = context;
         this.productList = productList;
     }
@@ -37,23 +40,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // Gán dữ liêu
         ProductModel product = productList.get(position);
 
-        //Tên sản phẩm
         holder.productName.setText(product.getProductName());
-
-        //Tiền Việt
-        Locale locale = new Locale("vn", "VN");
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        holder.productPrice.setText(currencyFormatter.format(product.getProductPrice()));
-
-        //Hình ảnh
-        String productImage = product.getProductImage();
-        int productImageResourceId = context.getResources().getIdentifier(productImage, "drawable", context.getPackageName());
-        holder.productImage.setImageResource(productImageResourceId);
+        holder.productPrice.setText("$"+product.getProductPrice());
+        Glide.with(context).load(product.getProductImage()).into(holder.productImage);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return productList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

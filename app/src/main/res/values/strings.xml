@@ -13,4 +13,5 @@
     <string name="register_text">Dont have an account? Register Now</string>
     <string name="login_text">Already have an account? Login Now</string>
     <string name="forget_password_success">Check your email for reset password link</string>
+    <string name="search">Search</string>
 </resources>

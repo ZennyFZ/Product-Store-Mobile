@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Penguin Store</string>
+    <string name="app_name">Perfume Store</string>
     <string name="email_input_hint">Input Email</string>
     <string name="full_name_input_hint">Input Full Name</string>
     <string name="phone_number_input_hint">Input Phone Number</string>
@@ -13,5 +13,15 @@
     <string name="register_text">Dont have an account? Register Now</string>
     <string name="login_text">Already have an account? Login Now</string>
     <string name="forget_password_success">Check your email for reset password link</string>
-    <string name="search">Search</string>
+    <string name="search">Input perfume name</string>
+    <string name="search_button">Search</string>
+    <string name="back_button">Back</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="view_detail">View Detail</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_order">Order</string>
+    <string name="nav_about_us">Support</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_view_profile_button">View Profile</string>
 </resources>

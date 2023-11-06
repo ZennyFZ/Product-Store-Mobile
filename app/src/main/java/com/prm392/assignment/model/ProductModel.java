@@ -37,6 +37,9 @@ public class ProductModel {
         this.category = category;
     }
 
+    public ProductModel(int productId, String productName, double price, int quantity) {
+    }
+
     public String getProductName() {
         return productName;
     }

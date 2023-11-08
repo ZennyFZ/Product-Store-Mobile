@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.prm392.assignment.util.CartDatabaseHelper;
 
 public class ProductDetail extends AppCompatActivity {
 
@@ -55,6 +57,19 @@ public class ProductDetail extends AppCompatActivity {
     }
 
     public void backToProductList(View view) {
-        finish();
+        Intent backToProductListIntent = new Intent(this, ProductList.class);
+        startActivity(backToProductListIntent);
+    }
+
+    public void addToCart(View view) {
+        Intent productDetailIntent = getIntent();
+        Bundle productDetailBundle = productDetailIntent.getBundleExtra("productDetail");
+        String productName = productDetailBundle.getString("productName");
+        String productPrice = productDetailBundle.getString("productPrice");
+        String productImage = productDetailBundle.getString("productImage");
+
+        CartDatabaseHelper cart = new CartDatabaseHelper(this);
+        cart.addProductToCart(productName, productImage, Double.parseDouble(productPrice), 1);
+        Toast.makeText(this, "Added "+productName+" to cart!", Toast.LENGTH_SHORT).show();
     }
 }

@@ -121,6 +121,16 @@ public class ProductList extends AppCompatActivity implements NavigationView.OnN
         startActivity(productDetailIntent);
     }
 
+    public void goToContactUs() {
+        Intent contactUsIntent = new Intent(this, ContactUs.class);
+        startActivity(contactUsIntent);
+    }
+
+    public void goToProfile(View view) {
+        Intent profileIntent = new Intent(this, Profile.class);
+        startActivity(profileIntent);
+    }
+
     public void openCartView(View view) {
         Intent cartIntent = new Intent(this, Cart.class);
         startActivity(cartIntent);
@@ -141,12 +151,8 @@ public class ProductList extends AppCompatActivity implements NavigationView.OnN
 //        } else if (item.getItemId() == R.id.nav_order) {
 //            Intent orderIntent = new Intent(this, Order.class);
 //            startActivity(orderIntent);
-//        } else if (item.getItemId() == R.id.nav_about_us) {
-//            Intent supportIntent = new Intent(this, Support.class);
-//            startActivity(supportIntent);
-//        } else if (item.getItemId() == R.id.nav_profile) {
-//            Intent profileIntent = new Intent(this, Profile.class);
-//            startActivity(profileIntent);
+        } else if (item.getItemId() == R.id.nav_about_us) {
+            goToContactUs();
         } else if (item.getItemId() == R.id.nav_logout) {
             Intent logoutIntent = new Intent(this, Login.class);
             startActivity(logoutIntent);

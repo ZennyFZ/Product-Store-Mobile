@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    >
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="389dp" />
+    <ImageView
+        android:layout_width="49dp"
+        android:layout_height="53dp"
+        android:layout_below="@+id/map"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/baseline_pin_drop_24" />
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/map"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        android:text="Địa chỉ: 123 Đường Cổ Loa, Hà Nội" />
+
+    <ImageView
+        android:layout_width="47dp"
+        android:layout_height="51dp"
+        android:layout_below="@+id/addressTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/baseline_access_time_24" />
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addressTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="86dp"
+        android:text="Monday-Friday 9:00 AM - 5:00 PM" />
+
+    <ImageView
+        android:layout_width="49dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/timeTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="181dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/baseline_smartphone_24" />
+
+    <TextView
+        android:id="@+id/phoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:text="Số điện thoại: 123-456-7890" />
+</RelativeLayout>

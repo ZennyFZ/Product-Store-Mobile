@@ -29,6 +29,9 @@ public class Cart extends AppCompatActivity {
         if(cartDatabaseHelper.getCartProducts().size() > 0) {
             findViewById(R.id.cartScrollView).setVisibility(View.VISIBLE);
             findViewById(R.id.cartEmpty).setVisibility(View.GONE);
+        }else{
+            findViewById(R.id.cartScrollView).setVisibility(View.GONE);
+            findViewById(R.id.cartEmpty).setVisibility(View.VISIBLE);
         }
         cartListView = findViewById(R.id.cartRecyclerView);
         cartAdapter = new CartAdapter(this, new CartDatabaseHelper(this).getCartProducts());

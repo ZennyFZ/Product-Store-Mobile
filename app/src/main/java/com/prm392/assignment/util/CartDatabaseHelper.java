@@ -158,6 +158,10 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             @SuppressLint("Range") int currentQuantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
             int newQuantity = currentQuantity - 1;
+            if (newQuantity == 0) {
+                removeProduct(productName);
+                return;
+            }
             ContentValues values = new ContentValues();
             values.put(COLUMN_QUANTITY, newQuantity);
             db.update(TABLE_CART, values, COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});

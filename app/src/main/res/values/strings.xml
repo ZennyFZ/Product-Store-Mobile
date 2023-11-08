@@ -35,4 +35,5 @@
     <string name="customerBox_title">Customer Information</string>
     <string name="billing_product_list">Products</string>
     <string name="cart_empty">Your Cart Is Empty</string>
+    <string name="map_api_key">AIzaSyA08qHiH4yKjoz8KwJ21T77_LjtNU7hqGg</string>
 </resources>

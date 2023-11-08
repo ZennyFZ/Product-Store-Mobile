@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.prm392.assignment.Cart;
+import com.prm392.assignment.model.CartModel;
 import com.prm392.assignment.model.ProductModel;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CART = "cart";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_PRODUCT_NAME = "product_name";
+    private static final String COLUMN_IMAGE = "image";
     private static final String COLUMN_PRICE = "price";
     private static final String COLUMN_QUANTITY = "quantity";
 
@@ -31,6 +34,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         String createTableQuery = "CREATE TABLE " + TABLE_CART + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PRODUCT_NAME + " TEXT, " +
+                COLUMN_IMAGE + " TEXT, " +
                 COLUMN_PRICE + " REAL, " +
                 COLUMN_QUANTITY + " INTEGER)";
         db.execSQL(createTableQuery);
@@ -42,9 +46,29 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addProductToCart(String productName, double price, int quantity) {
-        SQLiteDatabase db = getWritableDatabase();
+    public void logAllProductsInCart() {
+        SQLiteDatabase db = getReadableDatabase();
 
+        // Retrieve all rows from the cart table
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CART, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") String productName = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_NAME));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE));
+                @SuppressLint("Range") double price = cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE));
+                @SuppressLint("Range") int quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
+
+                Log.d("Product", productName + " " + image + " " + price + " " + quantity);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+    }
+
+    public void addProductToCart(String productName, String image, double price, int quantity) {
+        SQLiteDatabase db = getWritableDatabase();
         // Check if the product already exists in the cart
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CART + " WHERE " + COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
         Log.d("Cursor", String.valueOf(cursor.getCount()));
@@ -52,51 +76,41 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
             // Product already exists, update the quantity
             @SuppressLint("Range") int currentQuantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
             int newQuantity = currentQuantity + quantity;
-
             ContentValues values = new ContentValues();
             values.put(COLUMN_QUANTITY, newQuantity);
-
             db.update(TABLE_CART, values, COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
         } else {
             // Product doesn't exist, insert a new row
             ContentValues values = new ContentValues();
             values.put(COLUMN_PRODUCT_NAME, productName);
+            values.put(COLUMN_IMAGE, image);
             values.put(COLUMN_PRICE, price);
             values.put(COLUMN_QUANTITY, quantity);
-            Log.d("Insert", "Inserting " + values.toString() + " to cart");
             db.insert(TABLE_CART, null, values);
         }
+        logAllProductsInCart();
         cursor.close();
         db.close();
     }
 
-    public void updateProductQuantity(int productId, int quantity) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_QUANTITY, quantity);
-        String whereClause = COLUMN_ID + " = ?";
-        String[] whereArgs = {String.valueOf(productId)};
-        db.update(TABLE_CART, values, whereClause, whereArgs);
-        db.close();
-    }
-
-    public List<ProductModel> getCartProducts() {
-        List<ProductModel> productList = new ArrayList<>();
+    public List<CartModel> getCartProducts() {
+        List<CartModel> cartItems = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CART, null);
         if (cursor.moveToFirst()) {
             do {
-                @SuppressLint("Range") int productId = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
                 @SuppressLint("Range") String productName = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_NAME));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE));
                 @SuppressLint("Range") double price = cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE));
                 @SuppressLint("Range") int quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
-                ProductModel product = new ProductModel(productId, productName, price, quantity);
-                productList.add(product);
+                CartModel cart = new CartModel(productName, image, price, quantity);
+                cartItems.add(cart);
             } while (cursor.moveToNext());
         }
+        Log.d("ProductList", cartItems.toString());
         cursor.close();
         db.close();
-        return productList;
+        return cartItems;
     }
 
     public int getCartCount() {
@@ -110,5 +124,58 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return cartCount;
+    }
+
+    public void removeAllProducts() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_CART, null, null);
+        db.close();
+    }
+
+    public void removeProduct(String productName) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_CART, COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
+        db.close();
+    }
+
+    public void increaseQuantity(String productName) {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CART + " WHERE " + COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") int currentQuantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
+            int newQuantity = currentQuantity + 1;
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_QUANTITY, newQuantity);
+            db.update(TABLE_CART, values, COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
+        }
+        cursor.close();
+        db.close();
+    }
+
+    public void decreaseQuantity(String productName) {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CART + " WHERE " + COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") int currentQuantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
+            int newQuantity = currentQuantity - 1;
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_QUANTITY, newQuantity);
+            db.update(TABLE_CART, values, COLUMN_PRODUCT_NAME + " = ?", new String[]{productName});
+        }
+        cursor.close();
+        db.close();
+    }
+
+    public double calculateTotal() {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT SUM(" + COLUMN_PRICE + " * " + COLUMN_QUANTITY + ") FROM " + TABLE_CART;
+        Cursor cursor = db.rawQuery(query, null);
+        double total = 0;
+        if (cursor.moveToFirst()) {
+            total = cursor.getDouble(0);
+        }
+        cursor.close();
+        db.close();
+        return total;
     }
 }

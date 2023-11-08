@@ -24,4 +24,15 @@
     <string name="nav_about_us">Support</string>
     <string name="nav_logout">Logout</string>
     <string name="nav_view_profile_button">View Profile</string>
+    <string name="check_out">Checkout</string>
+    <string name="total_price">"Total Price: "</string>
+    <string name="remove_cart_all">Clear Cart</string>
+    <string name="pay_button">Pay</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="e_wallet">E-Wallet</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="cash">Cash</string>
+    <string name="customerBox_title">Customer Information</string>
+    <string name="billing_product_list">Products</string>
+    <string name="cart_empty">Your Cart Is Empty</string>
 </resources>

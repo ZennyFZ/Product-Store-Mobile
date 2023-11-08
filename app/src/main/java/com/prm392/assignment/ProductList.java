@@ -1,11 +1,7 @@
 package com.prm392.assignment;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,16 +9,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.prm392.assignment.adapter.ProductAdapter;
 import com.prm392.assignment.api.Endpoints;
 import com.prm392.assignment.api.RetrofitClientInstance;
@@ -35,6 +32,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    FirebaseAuth auth;
+    TextView customerName;
     ProductAdapter productAdapter;
     RecyclerView productListView;
     ProgressDialog progressDialog;
@@ -46,8 +45,16 @@ public class ProductList extends AppCompatActivity implements NavigationView.OnN
         setContentView(R.layout.activity_product_list);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        showDisplayName();
         showCartQuantity();
         getAllProduct();
+    }
+
+    public void showDisplayName() {
+        View headerView = navigationView.getHeaderView(0);
+        customerName = headerView.findViewById(R.id.welcome_text);
+        customerName.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        customerName.setText("Hi, "+auth.getInstance().getCurrentUser().getDisplayName());
     }
     public void showLoading() {
         progressDialog = new ProgressDialog(ProductList.this);
@@ -112,6 +119,11 @@ public class ProductList extends AppCompatActivity implements NavigationView.OnN
     public void goToProductDetail(View view) {
         Intent productDetailIntent = new Intent(this, ProductDetail.class);
         startActivity(productDetailIntent);
+    }
+
+    public void openCartView(View view) {
+        Intent cartIntent = new Intent(this, Cart.class);
+        startActivity(cartIntent);
     }
 
     public void showCartQuantity() {

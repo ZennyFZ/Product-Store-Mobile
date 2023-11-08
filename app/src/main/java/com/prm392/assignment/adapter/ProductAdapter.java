@@ -76,7 +76,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 ProductModel selectedProduct = productList.get(position);
-                cartDbHelper.addProductToCart(selectedProduct.getProductName(), Double.parseDouble(selectedProduct.getProductPrice()), 1);
+                cartDbHelper.addProductToCart(selectedProduct.getProductName(), selectedProduct.getProductImage() , Double.parseDouble(selectedProduct.getProductPrice()), 1);
                 Toast.makeText(v.getContext(), "Added "+selectedProduct.getProductName()+" to cart!", Toast.LENGTH_SHORT).show();
             }
         });

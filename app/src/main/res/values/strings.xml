@@ -21,7 +21,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_home">Home</string>
     <string name="nav_order">Order</string>
-    <string name="nav_about_us">Support</string>
+    <string name="nav_about_us">Contact Us</string>
     <string name="nav_logout">Logout</string>
     <string name="nav_view_profile_button">View Profile</string>
     <string name="check_out">Checkout</string>
@@ -36,4 +36,8 @@
     <string name="billing_product_list">Products</string>
     <string name="cart_empty">Your Cart Is Empty</string>
     <string name="map_api_key">AIzaSyA08qHiH4yKjoz8KwJ21T77_LjtNU7hqGg</string>
+    <string name="nav_view_order_history">Order History</string>
+    <string name="order_detail_button">View Detail</string>
+    <string name="cart_title">Your cart</string>
+    <string name="product_detail">Product Detail</string>
 </resources>

@@ -23,7 +23,17 @@
             android:src="@drawable/ic_arrow_left"
             android:onClick="backToProductList"
             android:layout_weight="0.1"/>
-
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/product_detail"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/menu_icon"
+            app:layout_constraintStart_toEndOf="@+id/menu_icon"
+            app:layout_constraintTop_toTopOf="@+id/menu_icon" />
     </LinearLayout>
 
     <LinearLayout

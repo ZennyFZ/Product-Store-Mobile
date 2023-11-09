@@ -126,6 +126,11 @@ public class ProductList extends AppCompatActivity implements NavigationView.OnN
         startActivity(contactUsIntent);
     }
 
+    public void goToOrderList() {
+        Intent orderListIntent = new Intent(this, OrderList.class);
+        startActivity(orderListIntent);
+    }
+
     public void goToProfile(View view) {
         Intent profileIntent = new Intent(this, Profile.class);
         startActivity(profileIntent);
@@ -148,14 +153,14 @@ public class ProductList extends AppCompatActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_home) {
             closeNavigationView();
-//        } else if (item.getItemId() == R.id.nav_order) {
-//            Intent orderIntent = new Intent(this, Order.class);
-//            startActivity(orderIntent);
+        } else if (item.getItemId() == R.id.nav_order) {
+            goToOrderList();
         } else if (item.getItemId() == R.id.nav_about_us) {
             goToContactUs();
         } else if (item.getItemId() == R.id.nav_logout) {
-            Intent logoutIntent = new Intent(this, Login.class);
-            startActivity(logoutIntent);
+            auth.getInstance().signOut();
+            Intent loginIntent = new Intent(this, Login.class);
+            startActivity(loginIntent);
         }
         return true;
     }

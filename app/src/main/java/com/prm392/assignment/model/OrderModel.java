@@ -6,6 +6,8 @@ import com.prm392.assignment.Cart;
 import java.util.List;
 
 public class OrderModel {
+    @SerializedName("_id")
+    private String orderId;
     @SerializedName("customerID")
     private String customerID;
     @SerializedName("customerName")
@@ -16,7 +18,7 @@ public class OrderModel {
     private String address;
     @SerializedName("products")
     private List<CartModel> products;
-    @SerializedName("orderDate")
+    @SerializedName("createDate")
     private String orderDate;
     @SerializedName("paymentMethod")
     private String paymentMethod;
@@ -32,6 +34,25 @@ public class OrderModel {
         this.products = products;
         this.orderDate = orderDate;
         this.paymentMethod = paymentMethod;
+    }
+
+    public OrderModel(String orderId, String customerID, String customerName, String phoneNumber, String address, List<CartModel> products, String orderDate, String paymentMethod) {
+        this.orderId = orderId;
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.products = products;
+        this.orderDate = orderDate;
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getCustomerID() {
@@ -93,11 +114,12 @@ public class OrderModel {
     @Override
     public String toString() {
         return "OrderModel{" +
-                "customerID='" + customerID + '\'' +
+                "orderId='" + orderId + '\'' +
+                ", customerID='" + customerID + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
-                ", products=" + products.toString() +
+                ", products=" + products +
                 ", orderDate='" + orderDate + '\'' +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 '}';

@@ -32,7 +32,7 @@
             android:gravity="center">
             <EditText
                 android:id="@+id/email_input"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="48dp"
                 android:hint="@string/email_input_hint"
                 android:autofillHints="emailAddress"
@@ -40,7 +40,7 @@
                 android:layout_marginTop="20dp"/>
             <EditText
                 android:id="@+id/full_name_input"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="48dp"
                 android:hint="@string/full_name_input_hint"
                 android:autofillHints="name"
@@ -48,7 +48,7 @@
                 android:layout_marginTop="20dp"/>
             <EditText
                 android:id="@+id/phone_number_input"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="48dp"
                 android:hint="@string/phone_number_input_hint"
                 android:autofillHints="phone"
@@ -56,7 +56,7 @@
                 android:layout_marginTop="20dp"/>
             <EditText
                 android:id="@+id/password_input"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="48dp"
                 android:hint="@string/password_input_hint"
                 android:autofillHints="password"
@@ -64,14 +64,14 @@
                 android:layout_marginTop="20dp"/>
             <EditText
                 android:id="@+id/confirm_password_input"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="48dp"
                 android:hint="@string/confirm_password_input_hint"
                 android:autofillHints="password"
                 android:inputType="textPassword"
                 android:layout_marginTop="20dp"/>
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/register_button_text"
                 android:textColor="@color/white"

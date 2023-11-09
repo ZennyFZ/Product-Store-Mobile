@@ -1,6 +1,8 @@
 package com.prm392.assignment.model;
 
-public class CartModel {
+import java.io.Serializable;
+
+public class CartModel implements Serializable {
     private String productName;
     private String productImage;
     private double price;

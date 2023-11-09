@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/teal_150"
+        android:background="@color/green"
         >
         <ImageView
             android:layout_width="100dp"
